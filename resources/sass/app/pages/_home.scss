@@ -1,0 +1,29 @@
+.parallax {
+    background-image: url("https://via.placeholder.com/1400x500");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin-top: 20px;
+}
+
+#advantages {
+    margin-top: 20px;
+    padding: 40px 0;
+    background-color: lightgray;
+
+    .row .col-md-4 {
+        padding: 10px 50px;
+
+        i { font-size: 40px; }
+
+        h4 {
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        p { text-align: justify; }
+    }
+}

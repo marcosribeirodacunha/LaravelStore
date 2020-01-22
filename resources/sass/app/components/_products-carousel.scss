@@ -1,0 +1,60 @@
+.products-carousel.carousel {
+    padding: 0 70px;
+    margin-bottom: 80px;
+
+    .item {
+        color: #747d89;
+        min-height: 325px;
+        overflow: hidden;
+    }
+
+    .carousel-control {
+        height: 44px;
+        width: 40px;
+        background: #727272;
+        margin: auto 0;
+        border-radius: 4px;
+        opacity: 0.8;
+
+        &:hover {
+            background: #494949;
+            opacity: 1;
+        }
+
+        /*i {
+            font-size: 36px;
+            position: absolute;
+            top: 50%;
+            display: inline-block;
+            margin: -19px 0 0 0;
+            z-index: 5;
+            left: 0;
+            right: 0;
+            color: #fff;
+            text-shadow: none;
+            font-weight: bold;
+        }*/
+
+        &.left span { margin-left: -2px; }
+
+        &.right span { margin-right: -4px; }
+    }
+
+    .carousel-indicators {
+        bottom: -50px;
+
+        li, li.active {
+            width: 10px;
+            height: 10px;
+            margin: 4px;
+            border-radius: 50%;
+            border: none;
+        }
+
+        li {
+            background: rgba(0, 0, 0, 0.2);
+
+            &.active { background: rgba(0, 0, 0, 0.6); }
+        }
+    }
+}

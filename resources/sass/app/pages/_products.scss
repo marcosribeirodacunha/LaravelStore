@@ -1,0 +1,49 @@
+.filter {
+    .title {
+        padding: 1em 1.5em;
+        margin-bottom: 0;
+        background-color: lightgray;
+    }
+
+    .nav {
+        a {
+            padding: .8em 1.5em;
+            color: gray;
+
+            span { color: black; }
+
+            &:hover {
+                color: lightgray;
+                span { color: lightgray; }
+            }
+
+            &.active {
+                color: darkgrey;
+                span { color: darkgrey; }
+            }
+        }
+    }
+}
+
+.filter-dropdown {
+    .dropdown-menu .dropdown-item.active {
+        background-color: lightgray;
+        color: black;
+    }
+}
+
+.pagination {
+    .page-item {
+        .page-link {
+            padding: 10px 20px;
+            color: black;
+            border: none;
+        }
+
+        &.active .page-link {
+            color: white;
+            border: none;
+            background-color: darkgray;
+        }
+    }
+}

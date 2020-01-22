@@ -1,0 +1,48 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+$fa-font-path: "./webfonts";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+// App components
+@import "app/components/products-carousel";
+@import "app/components/card-product";
+@import "app/components/image-previewer";
+@import "app/components/footer";
+
+// App pages
+@import "app/pages/home";
+@import "app/pages/products";
+@import "app/pages/product";
+
+.custom-title {
+    color: #000;
+    font-size: 26px;
+    font-weight: 300;
+    text-transform: uppercase;
+    position: relative;
+    margin: 30px 0 60px;
+
+    &::after {
+        content: "";
+        width: 100px;
+        position: absolute;
+        margin: 0 auto;
+        height: 4px;
+        border-radius: 1px;
+        background: #727272;
+        left: 0;
+        right: 0;
+        bottom: -20px;
+    }
+}
+

@@ -1,0 +1,39 @@
+#product-info {
+
+    h1 {
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+
+    .rating {
+        margin-bottom: 10px;
+
+        i {
+            font-size: .8em;
+            color: darkgray;
+        }
+    }
+
+    h4 { color: gray; }
+    p { text-align: justify }
+
+    .buttons {
+        a { margin-right: 15px; }
+
+        .btn-favorite {
+            padding: 0;
+            margin: auto 0;
+
+            i {
+                margin-top: 5px;
+                font-size: 1.5em;
+                color: gray;
+
+                &:hover {
+                    color: lightcoral;
+                }
+            }
+        }
+    }
+}
