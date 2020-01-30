@@ -16,7 +16,7 @@
                         <li class="nav-item">
                             <a class="nav-link d-flex active" href="">
                                 All
-                                <span class="ml-auto">(100)</span>
+                                <span class="ml-auto">({{ $products->total() }})</span>
                             </a>
                         </li>
 
@@ -61,14 +61,12 @@
 
                             {{-- Actual category --}}
                             <div>
-                                <h3 class="mb-0">All</h3>
+                                <h3 class="mb-0">
+                                    All ({{ $products->total() }})
+                                </h3>
                             </div>
 
                             <div class="d-flex">
-
-                                {{-- Temporary button to create new product page --}}
-                                <a href="{{ route('products.create') }}" class="btn btn-danger">Create new</a>
-
                                 {{-- Sort by button --}}
                                 <div class="ml-3 filter-dropdown">
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button"
@@ -119,51 +117,40 @@
                 </div>
 
                 {{-- Products--}}
-                <div class="row">
-                    @foreach($products as $product)
-                        <div class="col-md-4 mb-4">
-                            @component('app.components.card-product')
-                                @slot('image', 'https://via.placeholder.com/240x200')
+                @if($products->count() > 0)
+                    <div class="row">
+                        @foreach($products as $product)
+                            <div class="col-md-4 mb-4">
+                                @component('app.components.card-product')
+                                    @slot('image', 'https://via.placeholder.com/240x200')
 
-                                @slot('name')
-                                    {{ $product->name }}
-                                @endslot
+                                    @slot('name')
+                                        {{ $product->name }}
+                                    @endslot
 
-                                @slot('active', $product->active)
+                                    @slot('price', str_replace('.', ',', $product->price))
 
-                                @slot('price', str_replace('.', ',', $product->price))
+                                    @slot('slug', $product->slug)
+                                @endcomponent
+                            </div>
+                        @endforeach
+                    </div>
 
-                                @slot('slug', $product->slug)
-                            @endcomponent
-                        </div>
-                    @endforeach
-                </div>
+                    {{-- Show more button --}}
+                    {{--<div class="row justify-content-center">
+                        <button class="btn btn-outline-secondary">Show more</button>
+                    </div>--}}
 
-                {{-- Show more button --}}
-                <div class="row justify-content-center">
-                    <button class="btn btn-outline-secondary">Show more</button>
-                </div>
+                    {{-- Pagination --}}
+                    <div class="row justify-content-center mt-4">
+                        {{ $products->links() }}
+                    </div>
 
-                {{-- Pagination --}}
-                <div class="row justify-content-center mt-4">
-                    <nav aria-label="Page navigation products">
-                        <ul class="pagination shadow-sm">
-                            <li class="page-item">
-                                <a class="page-link" href="" aria-label="Previous">
-                                    <i class="fas fa-angle-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="">1</a></li>
-                            <li class="page-item"><a class="page-link" href="">2</a></li>
-                            <li class="page-item"><a class="page-link" href="">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="" aria-label="Next">
-                                    <i class="fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                @else
+                    <div class="row justify-content-center">
+                        <h1>I'm sorry, there aren't any product here!</h1>
+                    </div>
+                @endif
 
             </div>
 

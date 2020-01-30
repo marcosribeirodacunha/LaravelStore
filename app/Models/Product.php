@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -16,8 +16,6 @@ class Product extends Model
 
     protected $casts = [
         'active' => 'boolean',
-        'created_at' => 'datetime:d/m/Y H:i:s',
-        'updated_at' => 'datetime:d/m/Y H:i:s'
     ];
 
     public function setNameAttribute($value)
@@ -51,6 +49,6 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

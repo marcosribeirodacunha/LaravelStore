@@ -1,0 +1,42 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+$fa-font-path: "./webfonts";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+// Admin global
+#admin {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+}
+
+#main {
+    display: block;
+    height: 100%;
+    width: calc(100% - 300px);
+}
+
+#content {
+    padding: 20px;
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+// Admin components
+@import "admin/components/sidebar";
+@import "admin/components/header";
+
+// Admin pages
+@import "admin/pages/products";

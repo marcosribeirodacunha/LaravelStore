@@ -1,0 +1,36 @@
+header {
+    height: 60px;
+    padding: 10px 20px;
+
+    h4 {
+        color: #ffffff;
+        margin: 0;
+    }
+
+    a.menu-button {
+        text-decoration: none;
+        color: inherit;
+
+        i {
+            font-size: 1.3em;
+            color: #ffffff;
+        }
+    }
+
+    .navbar-nav li {
+        a {
+            span {
+                font-size: 1.1em;
+                margin: auto 5px;
+            }
+
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin: auto;
+            }
+        }
+    }
+}

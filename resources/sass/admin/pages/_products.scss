@@ -1,0 +1,22 @@
+.actions {
+    .btn i {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.pagination {
+    .page-item {
+        .page-link {
+            padding: 10px 20px;
+            color: black;
+            border: none;
+        }
+
+        &.active .page-link {
+            color: white;
+            border: none;
+            background-color: darkgray;
+        }
+    }
+}

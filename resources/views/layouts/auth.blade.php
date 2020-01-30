@@ -18,8 +18,10 @@
 
     @yield('styles')
 </head>
-<body>
-    <div id="app">
+<body >
+
+    <div id="auth" style="width: 100%; height: 100vh">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -97,73 +99,14 @@
             </div>
         </nav>
 
-        <main>
+        <main class="d-flex align-items-center justify-content-center" style="height: calc(100% - 55px)">
             @yield('content')
         </main>
-
-        <footer class="bg-dark">
-            <div class="container">
-                <div class="row py-5">
-                    <div class="col-md-4 offset-1 links">
-                        <ul>
-                            <li>
-                                <a href="{{ route('products.index') }}">Products</a>
-                            </li>
-                            <li>
-                                <a href="">Contact</a>
-                            </li>
-                            <li>
-                                <a href="">About</a>
-                            </li>
-                            <li>
-                                <a href="">FAQ</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="row justify-content-center">
-                            <h4>Newsletter</h4>
-                        </div>
-                        <div class="row justify-content-center my-2">
-                            <form action="" class="form-inline">
-                                @csrf
-                                <div class="input-group">
-                                    <input class="form-control" type="text" name="email" placeholder="Email address">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-outline-light">Subscribe</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="row justify-content-center social">
-                            <a href="" class="icon fb">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="" class="icon tw">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="" class="icon ig">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <div class="container py-4 text-secondary">
-                    <div class="row text-center">
-                        <div class="col-md-12">
-                            <h5>Copyright &copy; {{ date('Y') }}, All rights reserved</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script src="{{ url(mix('js/jquery.js')) }}"></script>
     <script src="{{ url(mix('js/bootstrap.js')) }}"></script>
-    <script src="{{ url(mix('js/app.js')) }}"></script>
+{{--    <script src="{{ url(mix('js/app.js')) }}"></script>--}}
 
     @stack('scripts')
 
