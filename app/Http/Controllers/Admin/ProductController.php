@@ -12,19 +12,19 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->paginate(15);
-        return view('admin.products.products')->with('products', $products);
+        return view('admin.products.index')->with('products', $products);
     }
 
     public function show(Product $product)
     {
         $product->load('category');
-        return view('admin.products.product')->with('product', $product);
+        return view('admin.products.show')->with('product', $product);
     }
 
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create-or-update', ['categories' => $categories]);
+        return view('admin.products.create-or-edit', ['categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -63,7 +63,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('admin.products.create-or-update')->with([
+        return view('admin.products.create-or-edit')->with([
             'product' => $product,
             'categories' => $categories
         ]);

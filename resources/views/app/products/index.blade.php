@@ -11,19 +11,12 @@
                 {{-- Categories --}}
                 <aside class="filter bg-white shadow-sm mb-4">
                     <h5 class="title">Categories</h5>
-
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex active" href="">
-                                All
-                                <span class="ml-auto">({{ $products->total() }})</span>
-                            </a>
-                        </li>
-
                         @foreach($categories as $category)
                             <li class="nav-item">
-                                <a class="nav-link d-flex" href="">
-                                    {{ ucfirst($category->name) }}
+                                <a class="nav-link d-flex {{ ($currentCategory == $category->name) ? 'active' : '' }}"
+                                   href="{{ route('products.index', ['category' => strtolower($category->name)]) }}">
+                                    {{ $category->name }}
                                     <span class="ml-auto">({{ $category->products_count }})</span>
                                 </a>
                             </li>
@@ -62,7 +55,7 @@
                             {{-- Actual category --}}
                             <div>
                                 <h3 class="mb-0">
-                                    All ({{ $products->total() }})
+                                    {{ $currentCategory }}
                                 </h3>
                             </div>
 
@@ -75,16 +68,36 @@
                                         Sort By
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sortByDropdown">
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'show' => request()->show,
+                                                     'sort' => 'az'])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->sort == 'az' ) ? 'active' : '' }}">
                                             Name, A to Z
                                         </a>
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'show' => request()->show,
+                                                     'sort' => 'za'])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->sort == 'za' ) ? 'active' : '' }}">
                                             Name, Z to A
                                         </a>
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'show' => request()->show,
+                                                     'sort' => 'low_high'])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->sort == 'low_high' ) ? 'active' : '' }}">
                                             Price, low to high
                                         </a>
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'show' => request()->show,
+                                                     'sort' => 'high_low'])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->sort == 'high_low' ) ? 'active' : '' }}">
                                             Price, high to low
                                         </a>
                                     </div>
@@ -95,18 +108,33 @@
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                             id="showQuantityDropdown"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Show 15
+                                        Show {{ $products->perPage() }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right"
                                          aria-labelledby="showQuantityDropdown">
-                                        <a href="" class="dropdown-item active">
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'sort' => request()->sort,
+                                                     'show' => 9])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->show == '9' ) ? 'active' : '' }}">
+                                            Show 9
+                                        </a>
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'sort' => request()->sort,
+                                                     'show' => 15])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->show == '15' ) ? 'active' : '' }}">
                                             Show 15
                                         </a>
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('products.index',
+                                                    ['category' => request()->category,
+                                                     'sort' => request()->sort,
+                                                     'show' => 30])
+                                                 }}"
+                                           class="dropdown-item {{ (request()->show == '30' ) ? 'active' : '' }}">
                                             Show 30
-                                        </a>
-                                        <a href="" class="dropdown-item">
-                                            Show 45
                                         </a>
                                     </div>
                                 </div>
@@ -125,7 +153,7 @@
                                     @slot('image', 'https://via.placeholder.com/240x200')
 
                                     @slot('name')
-                                        {{ $product->name }}
+                                        {{ $product->name }} - {{ $product->category->name }}
                                     @endslot
 
                                     @slot('price', str_replace('.', ',', $product->price))
@@ -143,7 +171,7 @@
 
                     {{-- Pagination --}}
                     <div class="row justify-content-center mt-4">
-                        {{ $products->links() }}
+                        {{ $products->appends(request()->input())->links() }}
                     </div>
 
                 @else

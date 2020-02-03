@@ -36,11 +36,11 @@
                             @endif
                         @endif
                     </th>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ str_replace('.', ',', $product->price) }}</td>
-                    <td>{{ $product->category->name }}</td>
-                    <td>{{ $product->units_in_stock }}</td>
-                    <td>{{ $product->updated_at->format('d/m/Y') }}</td>
+                    <td id="product_name">{{ $product->name }}</td>
+                    <td id="product_price">{{ str_replace('.', ',', $product->price) }}</td>
+                    <td id="product_category">{{ $product->category->name }}</td>
+                    <td id="product_stock">{{ $product->units_in_stock }}</td>
+                    <td id="product_update">{{ $product->updated_at->format('d/m/Y') }}</td>
                     <td class="actions">
                         <a href="{{ route('admin.products.show', $product->slug) }}"
                            class="btn btn-primary btn-sm">
@@ -86,15 +86,23 @@
         @endslot
 
         @slot('title')
-            Oh, sorry! We have a little problem.
+            <span id="delete_title"></span>
+            {{--Oh, sorry! We have a little problem.--}}
         @endslot
 
         @slot('content')
-            <p>I still do not know how to make modals dynamically show content based on the product
+            <span id="delete_content"></span>
+            {{--<p>I still do not know how to make modals dynamically show content based on the product
                 user wants to delete. So, please, if you want to delete any product, go to the details page (i)
                 and do it there. I hope, soon I can do this work.</p>
             <small><i>P.S.: if you're reading this, please feel free to help me to do it, all kind
-                of help is welcome.</i></small>
+                of help is welcome.</i></small>--}}
         @endslot
     @endcomponent
 @endsection
+
+@push('scripts')
+    <script>
+        $("a['data-target=#deleteModal']").alert("HI")
+    </script>
+@endpush
